@@ -1,0 +1,27 @@
+name: XOMeter
+options:
+  bundleIdPrefix: com.xometer
+settings:
+  base:
+    IPHONEOS_DEPLOYMENT_TARGET: '17.0'
+    SWIFT_VERSION: '5.0'
+targets:
+  XOMeter:
+    type: application
+    platform: iOS
+    sources:
+      - XOMeter
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.xometer.reader
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: XO Meter
+        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: Select electricity meter and bill photographs to analyze.
+        INFOPLIST_KEY_NSCameraUsageDescription: Capture electricity meter and bill photographs.
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        TARGETED_DEVICE_FAMILY: '1,2'
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: YES
+        SUPPORTS_MACCATALYST: NO
+    scheme:
+      testTargets: []

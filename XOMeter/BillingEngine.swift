@@ -12,10 +12,13 @@ enum Billing {
     /// Round to centavos (half-up, away from zero on ties) using Decimal to avoid binary drift.
     static func round2(_ value: Double) -> Double {
         guard value.isFinite else { return 0 }
-        var input = Decimal(value)
+        // Parse the human-readable decimal representation to avoid floating-point
+        // noise before rounding, then parse the rounded decimal string back to Double.
+        // NSDecimalNumber.doubleValue can itself introduce a 1-ULP discrepancy.
+        var input = Decimal(string: String(value), locale: Locale(identifier: "en_US_POSIX")) ?? Decimal(0)
         var output = Decimal()
         NSDecimalRound(&output, &input, 2, .plain)
-        return NSDecimalNumber(decimal: output).doubleValue
+        return Double(NSDecimalNumber(decimal: output).stringValue) ?? 0
     }
 
     // MARK: Consumption
